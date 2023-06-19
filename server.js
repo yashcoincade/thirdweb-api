@@ -1,5 +1,5 @@
 const express = require('express');
-const { ThirdwebSDK } = require('@thirdweb-dev/sdk/evm');
+// const { ThirdwebSDK } = require('@thirdweb-dev/sdk/evm');
 const { Alchemy, Network } = require('alchemy-sdk');
 
 const app = express();
@@ -44,21 +44,21 @@ app.get('/getUserOwnedNFTs/:userAddress', async (req, res) => {
  * @notice This API end-point provides Total number of RaceCade Car NFTs owned by a user
  * @dev We have used Thirdweb SDK to make this API call
  */
-app.get('/getNFTs', async (req, res) => {
-  const sdk = new ThirdwebSDK('mumbai');
-  const contract = await sdk.getContract(
-    '0x76a0377A4AD882e76E8C15ADA38A8218C961A945'
-  );
-  const data = await contract.call('balanceOf', [userAddress]);
-  if (data) {
-    console.log('NFTs owned by connected wallet: ', data);
-    res.status(200).json(data.toString());
-  } else {
-    res.status(404).json({
-      error: 'Owner does not exist',
-    });
-  }
-});
+// app.get('/getNFTs', async (req, res) => {
+//   const sdk = new ThirdwebSDK('mumbai');
+//   const contract = await sdk.getContract(
+//     '0x76a0377A4AD882e76E8C15ADA38A8218C961A945'
+//   );
+//   const data = await contract.call('balanceOf', [userAddress]);
+//   if (data) {
+//     console.log('NFTs owned by connected wallet: ', data);
+//     res.status(200).json(data.toString());
+//   } else {
+//     res.status(404).json({
+//       error: 'Owner does not exist',
+//     });
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
