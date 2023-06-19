@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
  * @notice This API end-point provides RaceCade Car NFTs owned by a user
  * @dev We have used Alchemy SDK to make this API call
  */
-app.get('/getUserOwnedNFTs/:userAddress', async (req, res) => {
+app.get('/api/public/v0/getUserOwnedNFTs/:userAddress', async (req, res) => {
   const userAddressByQuery = req.params.userAddress;
   // Get all NFTs owner by connected user
   const nfts = await alchemy.nft.getNftsForOwner(userAddressByQuery);
