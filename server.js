@@ -633,12 +633,10 @@ app.get('/api/public/v0/getUserOwnedNFTs/:userAddress', async (req, res) => {
  */
 app.post('/api/public/v0/freeMint', async (req, res) => {
   const connectedWallet = req.body.connectedUser;
+  const tokenURI = req.body.tokenURI;
 
   try {
-    const tx = await contract.safeMint(
-      connectedWallet,
-      'ipfs://QmVMsgQvxRWikR8dxGwbMXXoYbxpe1eYbVRCx48ekp9MuG'
-    );
+    const tx = await contract.safeMint(connectedWallet, tokenURI);
     // console.log('NFT minted Successfully => ', tx);
     return res.status(200).json({
       success: 'NFT Minted successfully',
@@ -651,20 +649,6 @@ app.post('/api/public/v0/freeMint', async (req, res) => {
     // console.error('Error => ', err);
   }
 });
-//   const sdk = new ThirdwebSDK('mumbai');
-//   const contract = await sdk.getContract(
-//     '0x76a0377A4AD882e76E8C15ADA38A8218C961A945'
-//   );
-//   const data = await contract.call('balanceOf', [userAddress]);
-//   if (data) {
-//     console.log('NFTs owned by connected wallet: ', data);
-//     res.status(200).json(data.toString());
-//   } else {
-//     res.status(404).json({
-//       error: 'Owner does not exist',
-//     });
-//   }
-// });
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
